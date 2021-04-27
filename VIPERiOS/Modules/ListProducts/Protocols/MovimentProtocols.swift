@@ -12,6 +12,7 @@ import UIKit
 protocol MovimentViewProtocol: class {
     // PRESENTER -> VIEW
     var presenter: MovimentPresenterProtocol? { get set }
+    func presentPushDataView(data: [Product])
 }
 
 protocol MovimentWireFrameProtocol: class {
@@ -26,10 +27,12 @@ protocol MovimentPresenterProtocol: class {
     var wireFrame: MovimentWireFrameProtocol? { get set }
     
     func viewDidLoad()
+    func goToDetails()
 }
 
 protocol MovimentInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
+    func sendDataPresenter(products: [Product])
 }
 
 protocol MovimentInteractorInputProtocol: class {
@@ -46,10 +49,12 @@ protocol MovimentDataManagerInputProtocol: class {
 protocol MovimentRemoteDataManagerInputProtocol: class {
     // INTERACTOR -> REMOTEDATAMANAGER
     var remoteRequestHandler: MovimentRemoteDataManagerOutputProtocol? { get set }
+    func getProducts() -> [Product]
 }
 
 protocol MovimentRemoteDataManagerOutputProtocol: class {
     // REMOTEDATAMANAGER -> INTERACTOR
+    func getData()
 }
 
 protocol MovimentLocalDataManagerInputProtocol: class {

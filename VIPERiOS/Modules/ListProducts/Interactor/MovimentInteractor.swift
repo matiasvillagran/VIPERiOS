@@ -14,9 +14,17 @@ class MovimentInteractor: MovimentInteractorInputProtocol {
     weak var presenter: MovimentInteractorOutputProtocol?
     var localDatamanager: MovimentLocalDataManagerInputProtocol?
     var remoteDatamanager: MovimentRemoteDataManagerInputProtocol?
+    
+
 
 }
 
 extension MovimentInteractor: MovimentRemoteDataManagerOutputProtocol {
-    // TODO: Implement use case methods
+    func getData() {
+        if let productos = remoteDatamanager?.getProducts() {
+            presenter?.sendDataPresenter(products: productos)
+        }
+    
+    }
+    
 }
